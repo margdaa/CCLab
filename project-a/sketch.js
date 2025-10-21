@@ -4,8 +4,8 @@ let a = 800;
 let b = 100;
 let a2 = 1;
 let b2 = 300;
-let a3 = 80;
-let b3 = 300;
+let a3 = 260;
+let b3 = 100;
 let frogSpeed = 1;
 let xtPos = 770;
 let ytPos = 200;
@@ -21,9 +21,16 @@ let b7 = 300;
 let xt1Pos = 20;
 let yt1Pos = 400;
 
+let tomatoSize = 1;
+let tomatoAlpha = 255;
+let TVColor = (51, 179, 70);
+let hatSparkle = false;
+let sparkleTimer = 1;
+
+
+
 function setup() {
-let canvas = createCanvas(800,500);
-canvas.parent("p5-canvas-container")
+  createCanvas(800, 500);
   x = width / 2;
   y = height / 2;
 }
@@ -61,10 +68,33 @@ function draw() {
   drawFlower(a5 - 550, b5 - 200);
   drawFlower(a5 - 550, b5 + 200);
   drawFlower(a5 + 500, b5 - 120);
-  drawFlower(a5 + 400, b5 - 100);
+  drawFlower(a5 + 300, b5 - 100);
 
   drawApple(xt1Pos, yt1Pos);
   drawApple(xt1Pos - 20, yt1Pos);
+  
+  drawMouseTomato(mouseX+20, mouseY+10)
+  
+    //TV
+  push()
+  stroke(61, 62, 79)
+  strokeWeight(5)
+  line(200, 15, 190, 75);
+  line(170, 15, 200, 50);
+  noStroke()
+  fill(49, 50, 64)
+  rect(150,40,70,60, 5)
+  fill(TVColor)
+  rect(160,50,50,40,2)
+  pop()
+
+//   remote flower
+  fill(230, 0, 73);
+  circle(603, 42, 20);
+  circle(593, 60, 20);
+  circle(613, 60, 20);
+  fill(255, 221, 0);
+  circle(603, 53, 14);
 
   //draw poster
   fill(89, 51, 11);
@@ -113,35 +143,36 @@ function draw() {
   quad(33, 370, 0, 330, 0, 350, 15, 380);
   fill(199, 0, 0);
   quad(15, 370, 0, 350, 0, 390, 16, 380);
-
+  
+   //  hat Sparkle 
+  if (hatSparkle) {
+    fill(255, 236, 0);
+    ellipse(a6 + 56 + random(-20, 15), b6 + 23 + random(-20, 10), random(2, 7));
+    sparkleTimer--;
+    if (sparkleTimer <= 0) hatSparkle = false;
+  }
+  
   drawStatue(a6, b6);
   drawMr(a, b);
   drawMr2(a2, b2);
   drawMr3(a3, b3);
   drawMr4(a7, b7);
   drawHungry(xPos, yPos);
+  drawMouseTomato(mouseX+20, mouseY+10)
 
-  //tomato
-  fill(237, 14, 14, 60);
-  circle(mouseX, mouseY, 60);
-  fill(201, 0, 40);
-  circle(mouseX, mouseY, 40);
-  fill(235, 0, 47);
-  circle(mouseX + 3, mouseY - 3, 30);
-  fill(255);
-  ellipse(mouseX + 8, mouseY - 8, 10, 6);
-  fill(25, 97, 24);
-  rect(mouseX - 3, mouseY - 30, 7, 15);
 
   //Mr.Hungry move
-  xPos += (mouseX - xPos) * 0.06;
-  yPos += (mouseY - yPos) * 0.06;
+  xPos += (mouseX - xPos) * 0.08;
+  yPos += (mouseY - yPos) * 0.08;
 
   // Move Mr.3
   if (keyIsDown(LEFT_ARROW)) a3 -= speed;
   if (keyIsDown(RIGHT_ARROW)) a3 += speed;
   if (keyIsDown(UP_ARROW)) b3 -= speed;
   if (keyIsDown(DOWN_ARROW)) b3 += speed;
+  
+tomatoSize = lerp(tomatoSize, 1, 0.1);
+tomatoAlpha = lerp(tomatoAlpha, 255, 0.1);
 
   //move Mr.1 yellow
   a -= frogSpeed;
@@ -170,6 +201,9 @@ function drawHungry(xPos, yPos) {
 
   let distanceToMouse = dist(xPos, yPos, mouseX, mouseY);
   let breathing = sin(frameCount * 0.05) * 4;
+  
+  let direction = (mouseX < xPos) ? -1 : 1;
+  scale(direction, 1); 
 
   //right eye
   fill(255);
@@ -406,6 +440,7 @@ function drawBush(a4, b4) {
 function drawFlower(a5, b5) {
   push();
   translate(a5, b5);
+  fill(97, 141, 79)
   triangle(5, 10, 10, 1, 10, 10);
   triangle(10, 5, 0, 1, 5, 10);
   triangle(8, 10, 10, 1, 30, 10);
@@ -449,3 +484,34 @@ function drawStatue(a6, b6) {
   text("Rabbit", +116, +125);
   pop();
 }
+function drawMouseTomato(mouseX, mouseY){
+push();
+translate(mouseX, mouseY);
+scale(tomatoSize);
+fill(237, 14, 14, 60 * (tomatoAlpha / 255));
+circle(0, 0, 60);
+fill(201, 0, 40, tomatoAlpha);
+circle(0, 0, 40);
+fill(235, 0, 47, tomatoAlpha);
+circle(+3, -3, 30);
+fill(255, tomatoAlpha);
+ellipse(+8, -8, 10, 6);
+fill(25, 97, 24, tomatoAlpha);
+rect(-3, -30, 7, 15);
+pop();
+}
+function mousePressed() {
+  tomatoSize = 0.3;
+  tomatoAlpha = 120;
+
+  //TV color
+  if (mouseX > 570 && mouseX <630 && mouseY > 20 && mouseY < 70 ) {
+    TVColor = [random(255), random(255), random(255)];
+  }
+
+  if (mouseX > a6 && mouseX < a6 + 80 && mouseY > b6 - 60 && mouseY < b6 + 100) {
+    hatSparkle = true;
+    sparkleTimer = 70;
+  }
+}
+
