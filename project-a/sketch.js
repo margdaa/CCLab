@@ -30,7 +30,8 @@ let sparkleTimer = 1;
 
 
 function setup() {
-  createCanvas(800, 500);
+  let canvas = createCanvas (800,500)
+  canvas.id("p5-canvas-container")
   x = width / 2;
   y = height / 2;
 }
