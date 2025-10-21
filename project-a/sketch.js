@@ -18,6 +18,8 @@ let a6 = 630;
 let b6 = 340;
 let a7 = 1;
 let b7 = 300;
+let a8 = 400
+let b8 = 250
 let xt1Pos = 20;
 let yt1Pos = 400;
 
@@ -31,7 +33,7 @@ let sparkleTimer = 1;
 
 function setup() {
   let canvas = createCanvas (800,500)
-  canvas.id("p5-canvas-container")
+  canvas.parent("p5-canvas-container")
   x = width / 2;
   y = height / 2;
 }
@@ -65,6 +67,18 @@ function draw() {
   drawBush(a4 - 95, b4 + 250);
   drawBush(a4 + 205, b4 + 250);
   drawBush(a4 + 470, b4 + 147);
+      drawleaves(a8,b8)
+    drawleaves(a8 + 200,b8 - 100)
+    drawleaves(a8 + 70,b8 - 180)
+    drawleaves(a8 + 360,b8 - 170)
+    drawleaves(a8 - 100,b8 - 150)
+    drawleaves(a8 - 300,b8 - 130)
+    drawleaves(a8 - 300,b8 + 130)
+    drawleaves(a8 + 300,b8 + 250)
+    drawleaves(a8 + 30,b8 + 250)
+    drawleaves(a8 + 370,b8 + 100)
+    drawleaves(a8 - 330,b8 + 230)
+    drawleaves(a8 - 230,b8 + 250)
   drawFlower(a5 + 40, b5 - 15);
   drawFlower(a5 - 550, b5 - 200);
   drawFlower(a5 - 550, b5 + 200);
@@ -90,6 +104,14 @@ function draw() {
   pop()
 
 //   remote flower
+  // the hue
+      fill(230, 0, 73, 30);
+  circle(603, 42, 40);
+  circle(593, 60, 40);
+  circle(613, 60, 40);
+  fill(255, 244, 0, 30);
+  circle(603, 53, 44);
+  //theflower
   fill(230, 0, 73);
   circle(603, 42, 20);
   circle(593, 60, 20);
@@ -500,6 +522,31 @@ ellipse(+8, -8, 10, 6);
 fill(25, 97, 24, tomatoAlpha);
 rect(-3, -30, 7, 15);
 pop();
+}
+function drawleaves(a8,b8){
+push()
+translate(a8,b8)
+  fill(153, 222, 86)
+  circle(+3, -18, 30);
+  fill(168, 235, 105)
+  circle(-7, 0, 18);
+  fill(135, 212, 60)
+  circle(+13, 0, 26)
+  
+  fill(153, 222, 86)
+  circle(-55, -48, 28);
+  fill(168, 235, 105)
+  circle(-60, -70, 35);
+  fill(135, 212, 60)
+  circle(-40, -70, 26)
+  
+  fill(138, 196, 83)
+  circle(-100, -28, 28);
+  fill(114, 168, 62)
+  circle(-107, -10, 35);
+  fill(135, 212, 60)
+  circle(-90, -10, 26)
+pop()
 }
 function mousePressed() {
   tomatoSize = 0.3;
