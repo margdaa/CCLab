@@ -24,12 +24,20 @@ class Cloud {
     this.x = cloudX/2
     this.y = cloudY/2
     this.s = cloudS
+      this.speedX += random(-2,2)
+      this.speedY += random(-2,2)
   }
   move(){
-   // this.x += random(-2,2)
+  //this.x += random(-2,2)
   //this.y += random(-2,2)
-  this.x += speedX
-  this.y += speedY
+  this.x += this.speedX
+  this.y += this.speedY
+   if (this.x>width || this.x < 0){
+    this.speedX = -this.speedX
+   }
+      if (this.y>height || this.y < 0){
+    this.speedY = -this.speedY
+   }
   }
   display() {
   push()

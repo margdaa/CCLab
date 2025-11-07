@@ -16,10 +16,9 @@ function setup() {
   // no adjustments in the setup function needed...
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("p5-canvas-container");
-    noStroke();
 
   // ...except to adjust the dancer's name on the next line:
-  dancer = new MargadDancer(width / 2, height / 2);
+  dancer = new YourNameDancer(width / 2, height / 2);
 }
 
 function draw() {
@@ -33,20 +32,18 @@ function draw() {
 
 // You only code inside this class.
 // Start by giving the dancer your name, e.g. LeonDancer.
-class MargadDancer {
+class YourNameDancer {
   constructor(startX, startY) {
     this.x = startX;
     this.y = startY;
     // add properties for your dancer here:
     //..
     //..
-    
+    //..
   }
   update() {
     // update properties here to achieve
     // your dancer's desired moves and behaviour
-    this.angle = sin(frameCount * 0.2) * 0.3;
-
   }
   display() {
     // the push and pop, along with the translate 
@@ -58,75 +55,10 @@ class MargadDancer {
     // ******** //
     // ⬇️ draw your dancer from here ⬇️
 
-push()
-   //rotate(frameCount * 0.05)
-      // BODY
-      translate()
-    fill(209, 9, 31);
-    ellipse(0, +15, 70, 20);
-    fill(255, 0, 32);
-    ellipse(0, 0, 70, 50);
-    fill(240, 226, 184);
-    ellipse(0, +15, 50, 20);
 
-    // EYES
-    fill(0);
-    circle(-17, +8, 10);
-    circle(+17, +8, 10);
-    fill(255);
-    circle(-19, +6, 5);
-    circle(+15, +6, 5);
-    fill(0, 180);
-    arc(-17, +2, 30, 30, 0, PI);
-    arc(+17, +2, 30, 30, 0, PI);
-    rect(-3, +2, 6, 5);
 
-    // MOUTH
-    fill(0);
-    arc(0, +15, 10, 10, 0, PI);
 
-    // LEGS
-    fill(184, 6, 25);
-    push();
-    translate(-25, 30);
-    rotate(this.angle);
-    arc(0, 0, 30, 20, PI, 0);
-    pop();
 
-    push();
-    translate(+25, 30);
-    rotate(-this.angle);
-    arc(0, 0, 30, 20, PI, 0);
-    pop();
-    pop()
-
-    // ARMS
-      fill(184, 6, 25);
-    arc(-38, -22, 18, 15, 0, PI);
-    arc(+38, -22, 18, 15, 0, PI);
-    push();
-    translate(-35, -30);
-    rotate(-this.angle);
-    arc(0, 0, 20, 30, PI + HALF_PI, PI - HALF_PI);
-    pop();
-
-    push(); 
-    translate(-40, - 30);
-    rotate(this.angle);
-    arc(0, 0, 20, 30, PI - HALF_PI, PI + HALF_PI);
-    pop();
-
-    push();
-    translate(+35, -30);
-    rotate(this.angle);
-    arc(0, 0, 20, 30, PI - HALF_PI, PI + HALF_PI);
-    pop();
-
-    push();
-    translate(+40, -30);
-    rotate(-this.angle);
-    arc(0, 0, 20, 30, PI + HALF_PI, PI - HALF_PI);
-    pop();
 
     // ⬆️ draw your dancer above ⬆️
     // ******** //
