@@ -40,7 +40,7 @@ class Particle {
     // properties (variables): particle's characteristics
     this.x = startX;
     this.y = startY;
-    this.dia = random(10);
+    this.dia = random(1,10);
     this.speed = random(1,3)
     this.xOffset = random(1000)
   }
