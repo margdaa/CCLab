@@ -88,6 +88,14 @@ checkMouse(){
   this.col = color(0,0,0)
  }
 } 
+
+//checkCollision(other){
+ // let d = dist(other.x, other.y, this.x, this.y)
+ // if (d < this.size / 2 + other.size / 2){
+  //  this.col
+ // }
+
+
  display(){
    push();
    translate(this.x, this.y);
@@ -97,3 +105,4 @@ checkMouse(){
    pop();
  }
 }
+
