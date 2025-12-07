@@ -328,7 +328,6 @@ class Balloon {
       stroke(255, 220);
       line(this.x, this.y + this.r * 0.6, this.x, this.y + this.r * 1.8);
     } else {
-      // popped little fragments
       fill(255, 200, 200, 160);
       for (let i = 0; i < 6; i++) {
         rect(this.x + random(-8, 8), this.y + random(-8, 8), 3, 6);
@@ -490,7 +489,7 @@ class PixelCat {
       this.onGround = false;
     }
 
-    this.vy += 0.3; 
+    this.vy += 0.1; 
     this.x += this.vx;
     this.y += this.vy;
 
